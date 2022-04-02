@@ -98,7 +98,7 @@ void delete_node(dll* dl, node* n)
         dl->root = n->next;
         (n->next)->prev = NULL;
         free(n);
-    } else if(n !=dl->last)
+    } else if(n != dl->last)
     {
         (n->prev)->next = n->next;
         (n->next)->prev = n->prev;
@@ -106,6 +106,7 @@ void delete_node(dll* dl, node* n)
     } else 
     {
         (n->prev)->next = n->next;
+        dl->last = n->prev;
         free(n);
     };
 }

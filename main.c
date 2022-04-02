@@ -24,6 +24,23 @@ void printdll(dll* dl)
     };
 }
 
+void printdllinv(dll* dl)
+{
+    if(dl == NULL){
+        printf("The pointer is free. \n");
+    }else
+    {    
+        node* c = dl->last;
+        while(c != NULL)
+        {
+            printf("ds");
+            printpoint(c);
+            c = c->prev;
+        };
+        printf("\n");
+    };
+}
+
 int main()
 {
     point p1; point p2; point p3; point p4;
@@ -49,5 +66,8 @@ int main()
 
     insert_node(dl, (dl->last)->prev, &p2, 1);
 
-    delete_node(dl, (dl->last));   
-}
+    delete_node(dl, (dl->last));
+
+    printdll(dl);
+    printdllinv(dl);    
+    }
