@@ -62,7 +62,6 @@ int main()
     add(dl, &p4);
 
     //freedll(&dl);
-
     insert_node(dl, (dl->root), &p2, 1);
 
     delete_node(dl, (dl->last));    
