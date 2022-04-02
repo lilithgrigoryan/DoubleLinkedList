@@ -33,7 +33,6 @@ void printdllinv(dll* dl)
         node* c = dl->last;
         while(c != NULL)
         {
-            printf("ds");
             printpoint(c);
             c = c->prev;
         };
@@ -64,10 +63,7 @@ int main()
 
     //freedll(&dl);
 
-    insert_node(dl, (dl->last)->prev, &p2, 1);
+    insert_node(dl, (dl->root), &p2, 1);
 
-    delete_node(dl, (dl->last));
-
-    printdll(dl);
-    printdllinv(dl);    
+    delete_node(dl, (dl->last));    
     }
