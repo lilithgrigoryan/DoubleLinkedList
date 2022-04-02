@@ -79,7 +79,8 @@ void insert_node_before(dll* dl, node* n, void* data)
     };
 };
 
-void insert_node(dll* dl, node* n, void* data, int p)
+void insert_node(dll* dl, node* n, void* data, int p) 
+//p=1 for adding element before and anything else for adding after 
 {
     if(p != 1)
     {

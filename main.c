@@ -45,7 +45,6 @@ int main()
     add(dl, &p3);
     add(dl, &p4);
 
-
     //freedll(&dl);
 
     insert_node(dl, (dl->last)->prev, &p2, 1);
