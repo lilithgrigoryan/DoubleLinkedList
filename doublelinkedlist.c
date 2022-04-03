@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include "doublelinkedlist.h"
 
-dll* init_dll()
+list* init_dll()
 {
-    dll* dl = (dll *) malloc(sizeof(dll)*1);
+    list* dl = (list *) malloc(sizeof(list)*1);
     
     dl->last = NULL;
     dl->root = NULL;
@@ -20,7 +20,7 @@ node* init_node(void* data)
     n->prev = NULL;
 };
 
-void add(dll* dl, void* data)
+void add(list* dl, void* data)
 {
     node* new = init_node(data);
 
@@ -36,7 +36,7 @@ void add(dll* dl, void* data)
     }
 };
 
-void freedll(dll** dl)
+void freedll(list** dl)
 {
     node* c = (*dl)->root;
     while(c != NULL)
@@ -49,7 +49,7 @@ void freedll(dll** dl)
     *dl = NULL;
 };
 
-void insert_node_after(dll* dl, node* n, void* data)
+void insert_node_after(list* dl, node* n, void* data)
 {
     node* new = init_node(data);
     if(n->next == NULL)
@@ -65,7 +65,7 @@ void insert_node_after(dll* dl, node* n, void* data)
     };
 };
 
-void insert_node_before(dll* dl, node* n, void* data)
+void insert_node_before(list* dl, node* n, void* data)
 {
     node* new = init_node(data);
     if(n == dl->root)
@@ -79,7 +79,7 @@ void insert_node_before(dll* dl, node* n, void* data)
     };
 };
 
-void insert_node(dll* dl, node* n, void* data, int p) 
+void insert_node(list* dl, node* n, void* data, int p) 
 //p=1 for adding element before and anything else for adding after 
 {
     if(p != 1)
@@ -91,7 +91,7 @@ void insert_node(dll* dl, node* n, void* data, int p)
     }
 }
 
-void delete_node(dll* dl, node* n)
+void delete_node(list* dl, node* n)
 {
     if(n == dl->root)
     {

@@ -2,13 +2,19 @@
 #include <stdlib.h>
 #include "doublelinkedlist.h"
 
+typedef struct _point
+{
+    float x;
+    float y;
+} point;
+
 void printpoint(node* n)
 {
     point* t = (point* )n->data;
     printf("(%f, %f) \n", (*t).x, (*t).y);
 }
 
-void printdll(dll* dl)
+void printdll(list* dl)
 {
     if(dl == NULL){
         printf("The pointer is free. \n");
@@ -24,7 +30,7 @@ void printdll(dll* dl)
     };
 }
 
-void printdllinv(dll* dl)
+void printdllinv(list* dl)
 {
     if(dl == NULL){
         printf("The pointer is free. \n");
@@ -43,7 +49,7 @@ void printdllinv(dll* dl)
 int main()
 {
     point p1; point p2; point p3; point p4;
-    dll* dl;
+    list* dl;
 
     dl = init_dll();
 
@@ -64,5 +70,7 @@ int main()
     //freedll(&dl);
     insert_node(dl, (dl->root), &p2, 1);
 
-    delete_node(dl, (dl->last));    
+    delete_node(dl, (dl->last));
+
+    printdll(dl);
     }

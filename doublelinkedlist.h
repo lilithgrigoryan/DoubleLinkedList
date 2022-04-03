@@ -1,12 +1,6 @@
 #ifndef _DOUBLELINKEDLIST_
 #define _DOUBLELINKEDLIST_
 
-typedef struct _point
-{
-    float x;
-    float y;
-} point;
-
 typedef struct _node
 {
     void* data;
@@ -18,13 +12,13 @@ typedef struct doublelinkedlist
 {
     node* root;
     node* last; 
-} dll;
+} list;
 
-dll* init_dll();
+list* init_dll();
 node* init_node(void*);
-void add(dll*, void*);
-void freedll(dll**);
-void insert_node(dll*, node*, void*, int);
-void delete_node(dll*, node*);
+void add(list*, void*);
+void freedll(list**);
+void insert_node(list*, node*, void*, int);
+void delete_node(list*, node*);
 
 #endif 
