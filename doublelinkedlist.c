@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "doublelinkedlist.h"
 
-list* init_dll()
+list* list_init()
 {
     list* dl = (list *) malloc(sizeof(list)*1);
     
@@ -11,7 +11,7 @@ list* init_dll()
     return dl;
 };
 
-node* init_node(void* data)
+node* node_init(void* data)
 {
     node* n = (node*) malloc(sizeof(node)*1);
 
@@ -20,9 +20,9 @@ node* init_node(void* data)
     n->prev = NULL;
 };
 
-void add(list* dl, void* data)
+void list_add(list* dl, void* data)
 {
-    node* new = init_node(data);
+    node* new = node_init(data);
 
     if(NULL == dl->root)
     {
@@ -36,7 +36,7 @@ void add(list* dl, void* data)
     }
 };
 
-void freedll(list** dl)
+void list_free(list** dl)
 {
     node* c = (*dl)->root;
     while(c != NULL)
@@ -51,10 +51,10 @@ void freedll(list** dl)
 
 void insert_node_after(list* dl, node* n, void* data)
 {
-    node* new = init_node(data);
+    node* new = node_init(data);
     if(n->next == NULL)
     {
-        add(dl, data);
+        list_add(dl, data);
     } else
     {
         node* t = n->next;
@@ -67,7 +67,7 @@ void insert_node_after(list* dl, node* n, void* data)
 
 void insert_node_before(list* dl, node* n, void* data)
 {
-    node* new = init_node(data);
+    node* new = node_init(data);
     if(n == dl->root)
     {
         new->next = dl->root;
@@ -79,7 +79,7 @@ void insert_node_before(list* dl, node* n, void* data)
     };
 };
 
-void insert_node(list* dl, node* n, void* data, int p) 
+void list_insert(list* dl, node* n, void* data, int p) 
 //p=1 for adding element before and anything else for adding after 
 {
     if(p != 1)
@@ -91,7 +91,7 @@ void insert_node(list* dl, node* n, void* data, int p)
     }
 }
 
-void delete_node(list* dl, node* n)
+void list_remove(list* dl, node* n)
 {
     if(n == dl->root)
     {

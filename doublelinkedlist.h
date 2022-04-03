@@ -14,11 +14,10 @@ typedef struct doublelinkedlist
     node* last; 
 } list;
 
-list* init_dll();
-node* init_node(void*);
-void add(list*, void*);
-void freedll(list**);
-void insert_node(list*, node*, void*, int);
-void delete_node(list*, node*);
+list* list_init();
+void list_add(list*, void*);
+void list_free(list**);
+void list_insert(list*, node*, void*, int);
+void list_remove(list*, node*);
 
-#endif 
+#endif //!_DOUBLELINKEDLIST_

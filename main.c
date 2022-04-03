@@ -8,13 +8,13 @@ typedef struct _point
     float y;
 } point;
 
-void printpoint(node* n)
+void point_print(node* n)
 {
     point* t = (point* )n->data;
     printf("(%f, %f) \n", (*t).x, (*t).y);
 }
 
-void printdll(list* dl)
+void list_print(list* dl)
 {
     if(dl == NULL){
         printf("The pointer is free. \n");
@@ -23,14 +23,14 @@ void printdll(list* dl)
         node* c = dl->root;
         while(c != NULL)
         {
-            printpoint(c);
+            point_print(c);
             c = c->next;
         };
         printf("\n");
     };
 }
 
-void printdllinv(list* dl)
+void list_print_inv(list* dl)
 {
     if(dl == NULL){
         printf("The pointer is free. \n");
@@ -39,7 +39,7 @@ void printdllinv(list* dl)
         node* c = dl->last;
         while(c != NULL)
         {
-            printpoint(c);
+            point_print(c);
             c = c->prev;
         };
         printf("\n");
@@ -51,7 +51,7 @@ int main()
     point p1; point p2; point p3; point p4;
     list* dl;
 
-    dl = init_dll();
+    dl = list_init();
 
     p1.x = 1; p1.y = 3;
     p2.x = -3; p2.y = 9;
@@ -62,15 +62,15 @@ int main()
     p4.x = p3.x + p2.x;
     p4.y = p3.y + p2.y;
 
-    add(dl, &p1);
-    add(dl, &p2);
-    add(dl, &p3);
-    add(dl, &p4);
+    list_add(dl, &p1);
+    list_add(dl, &p2);
+    list_add(dl, &p3);
+    list_add(dl, &p4);
 
-    //freedll(&dl);
-    insert_node(dl, (dl->root), &p2, 1);
+    //list_free(&dl);
+    list_insert(dl, (dl->root), &p2, 1);
 
-    delete_node(dl, (dl->last));
+    list_remove(dl, (dl->last));
 
-    printdll(dl);
+    list_print(dl);
     }
