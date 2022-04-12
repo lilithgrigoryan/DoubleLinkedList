@@ -1,9 +1,8 @@
-#include <stdlib.h>
 #include "doublelinkedlist.h"
 
 list* list_init()
 {
-    list* dl = (list *) malloc(sizeof(list)*1);
+    list* dl = (list *) malloc(sizeof(list));
     
     dl->last = NULL;
     dl->root = NULL;
@@ -24,7 +23,7 @@ void list_add(list* dl, void* data)
 {
     node* new = node_init(data);
 
-    if(NULL == dl->root)
+    if(dl->root == NULL)
     {
         dl->root = new; 
         dl->last = new;
@@ -34,7 +33,7 @@ void list_add(list* dl, void* data)
         new->prev = dl->last;
         dl->last = new;
     }
-};
+}
 
 void list_free(list** dl)
 {
@@ -49,7 +48,7 @@ void list_free(list** dl)
     *dl = NULL;
 };
 
-void insert_node_after(list* dl, node* n, void* data)
+void list_insert(list* dl, node* n, void* data)
 {
     node* new = node_init(data);
     if(n->next == NULL)
@@ -65,50 +64,28 @@ void insert_node_after(list* dl, node* n, void* data)
     };
 };
 
-void insert_node_before(list* dl, node* n, void* data)
-{
-    node* new = node_init(data);
-    if(n == dl->root)
-    {
-        new->next = dl->root;
-        (new->next)->prev = new;
-        dl->root = new;
-    } else
-    {
-        insert_node_after(dl, n->prev, data);
-    };
-};
-
-void list_insert(list* dl, node* n, void* data, int p) 
-//p=1 for adding element before and anything else for adding after 
-{
-    if(p != 1)
-    {
-        insert_node_after(dl, n, data);
-    } else
-    {
-        insert_node_before(dl, n, data);        
-    }
-}
-
 void list_remove(list* dl, node* n)
 {
-    if(n == dl->root)
+    if(n == dl->root && n == dl->last)
     {
-        dl->root = n->next;
+        dl->root = NULL;
+        dl->last = NULL;
+    }
+    else if(n == dl->root)
+    {
         (n->next)->prev = NULL;
-        free(n);
-    } else if(n != dl->last)
+        dl->root = n->next;
+    } 
+    else if(n != dl->root && n != dl->last)
     {
         (n->prev)->next = n->next;
         (n->next)->prev = n->prev;
-        free(n);
-    } else 
-    {
+    }
+    else if(n == dl->last){
         (n->prev)->next = n->next;
         dl->last = n->prev;
-        free(n);
-    };
+    }
+    free(n);
 }
 
 

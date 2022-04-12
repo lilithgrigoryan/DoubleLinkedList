@@ -68,7 +68,7 @@ int main()
     list_add(dl, &p4);
 
     //list_free(&dl);
-    list_insert(dl, (dl->root), &p2, 1);
+    list_insert(dl, (dl->root), &p2);
 
     list_remove(dl, (dl->last));
 
